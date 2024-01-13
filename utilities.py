@@ -1,3 +1,4 @@
+from os import path
 import numpy as np
 import pandas as pd
 
@@ -120,7 +121,7 @@ def get_predicted_class(label):
 def detect_anomaly(review, model_path='models'):
     preprocessed_review = preprocess_review(review=review)
     encoded_review = encode_tfidf_single(preprocessed_review)
-    model = load_model(filename=f'{model_path}/anomaly_IForest.pickle')
+    model = load_model(filename='models/anomaly_IForest.pickle')
     prediction = model.predict(encoded_review)[0]
     category = {1: "non-anomalous", -1: "anomalous"}
     return (prediction, category[prediction])
@@ -218,3 +219,6 @@ def interpretResult(results):
         return f'The review is <b>{results["review-sentiment"]} (Confidence: \
             {results["sentiment-confidence"]})</b> and \
                 it is <b><i>{results["anomaly-status"][1]}</i></b>.'
+
+
+# print(detect_anomaly('I am feeling good about this product. Happy!'))
