@@ -3,5 +3,3 @@ pandas
 scikit-learn
 nltk
 streamlit
-re
-pickle
